@@ -11,7 +11,7 @@ run:
     - |
       touch file1.txt 
       chmod 777 ./file1.txt  
-      echo hello world > ./file1.txt
+      echo ((text)) > ./file1.txt
       touch file2.txt
       cat file1.txt > ./file2.txt
       cat file1.txt
