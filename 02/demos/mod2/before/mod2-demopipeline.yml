@@ -1,0 +1,10 @@
+jobs:
+- name: parallel tasks
+  plan: 
+  - in_parallel:
+    - task: task1-copy-with-file
+      file: resources/mod2-task-copy.yml
+         
+    - task: task2-copy-without-file
+      file: ./resources/mod2-task-without-copy.yml
+        

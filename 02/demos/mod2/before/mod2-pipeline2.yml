@@ -1,0 +1,44 @@
+## run node test build pipeline
+---
+resources:
+- name: source-code
+  type: git
+  source:
+    uri: https://github.com/Anshita15/nodeRepo.git
+    branch: master
+
+# - name: nodejs.org-git
+#   type: git
+#   icon: github-circle
+#   source:
+#     uri: https://github.com/nodejs/nodejs.org.git
+
+jobs:
+- name: building-app
+  plan: 
+  - get: source-code
+  - task: build-app
+    config:
+        platform: linux
+        image_resource:
+            type: registry-image
+            source: {repository: node, tag: "8" }
+        inputs:
+        - name: source-code
+        outputs:
+        - name: test-results
+        run: 
+         path: /bin/sh
+         args:
+         - -c
+         - |
+            echo "Node Version: $(node --version)"
+            echo "NPM Version: $(npm --version)"
+            export CHROME_BIN='/usr/bin/chromium'
+            cd source-code
+            cd firstApp
+            npm install
+            npm run build
+            
+
+    

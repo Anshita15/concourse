@@ -1,0 +1,17 @@
+---
+platform: linux
+image_resource:
+    type: registry-image
+    source: {repository: node, tag: "8" }
+
+run: 
+  path: /bin/sh
+  args:
+    - -c
+    - |
+      touch file1.txt 
+      chmod 777 ./file1.txt  
+      echo hello world > ./file1.txt
+      touch file2.txt
+      cat file1.txt > ./file2.txt
+      cat file1.txt

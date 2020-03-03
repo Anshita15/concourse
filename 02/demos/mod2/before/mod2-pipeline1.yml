@@ -1,0 +1,25 @@
+---
+resources:
+- name: source-code
+  type: git
+  source:
+    uri: https://github.com/Anshita15/nodeRepo.git
+    branch: master
+    
+jobs:
+- name: pull-source-code
+  plan:
+  - get: source-code
+  - task: source-code
+    config:
+        platform: linux
+        image_resource:
+            type: docker-image
+            source: {repository: ubuntu}
+        inputs:
+        - name: source-code #its resource that you are giving as input
+        outputs:
+        - name: output-folder
+        run:
+            path: find
+            args: [.]

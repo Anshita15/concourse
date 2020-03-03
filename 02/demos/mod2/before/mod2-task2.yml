@@ -1,0 +1,23 @@
+---
+platform: linux
+image_resource: 
+  type: docker-image
+  source: {repository: ubuntu}
+
+inputs:
+- name: resources
+  path: input-resources-folder
+
+outputs:
+- name: output-folder
+
+run:
+  path: bash 
+  # path: chmod +x script.sh
+  # path: find
+  args: 
+    - -exec
+    - |
+      cd ./input-resources-folder
+      chmod 777 script.sh
+      ./script.sh
