@@ -1,10 +1,19 @@
+---
+resources:
+- name: source-code
+  type: git
+  source:
+    uri: https://github.com/Anshita15/concourse.git
+    branch: master
+
 jobs:
 - name: parallel tasks
-  plan: 
+  plan:
+  - get: source-code
   - in_parallel:
     - task: task1-copy-with-file
-      file: resources/mod2-task-copy.yml
-         
+      file: source-code/02/demos/mod2/before/mod2-task-copy.yml
+        
     - task: task2-copy-without-file
-      file: ./resources/mod2-task-without-copy.yml
+      file: source-code/02/demos/mod2/before/mod2-task-without-copy.yml
         
