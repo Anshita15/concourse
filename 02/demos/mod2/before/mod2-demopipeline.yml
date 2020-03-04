@@ -13,6 +13,8 @@ jobs:
   - in_parallel:
     - task: task1-copy-with-file
       file: source-code/02/demos/mod2/before/mod2-task-copy.yml
+      params:
+        {text : ((text-value))}
         
     - task: task2-copy-without-file
       file: source-code/02/demos/mod2/before/mod2-task-without-copy.yml

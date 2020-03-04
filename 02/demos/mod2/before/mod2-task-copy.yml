@@ -5,13 +5,13 @@ image_resource:
     source: {repository: node, tag: "8" }
 
 run: 
-  path: /bin/sh
+  path: ((text))
   args:
     - -c
     - |
       touch file1.txt 
       chmod 777 ./file1.txt  
-      echo ((text)) > ./file1.txt
+      echo ghello mam > ./file1.txt
       touch file2.txt
       cat file1.txt > ./file2.txt
       cat file1.txt
