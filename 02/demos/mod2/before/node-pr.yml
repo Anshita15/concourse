@@ -17,7 +17,7 @@ resources:
   source:
     repository: Anshita15/nodeRepo
     base_branch	: master
-    access_token: fae801d31c22e4174f036ffe0898643484884025
+    access_token: ((access-token-key))
 
 - name: pipeline-resources
   type: git
