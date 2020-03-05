@@ -1,0 +1,26 @@
+---
+platform: linux
+image_resource:
+    type: registry-image
+    source: {repository: node, tag: "8" }
+
+inputs:
+ - name: node-repo
+run: 
+  path: /bin/sh
+  args:
+    - -c
+    - |
+        echo "Node Version: $(node --version)"
+        echo "NPM Version: $(npm --version)"
+        cd node-repo
+        npm install
+        npm config set registry https://www.npmjs.com/
+        npm config set username anshita15
+        npm config set password Anshita@15
+        npm config set email anshitasingh101@gmail.com
+        npm config set strict-ssl false
+        npm whoami
+        npm config get password
+        ng build
+    

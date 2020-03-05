@@ -1,0 +1,45 @@
+---
+resource_types:
+- name: pull-request
+  type: docker-image
+  source:
+    repository: teliaoss/github-pr-resource
+
+- name: npm
+  type: docker-image
+  source:
+    repository: pivotalservices/artifactory-resource
+
+resources:
+- name: node-repo
+  type: pull-request
+  check_every: 1m
+  source:
+    repository: Anshita15/nodeRepo
+    base_branch	: master
+    access_token: fae801d31c22e4174f036ffe0898643484884025
+
+- name: pipeline-resources
+  type: git
+  source:
+    uri: https://github.com/Anshita15/concourse.git
+    branch: master
+
+jobs:
+  - name: pr-pipeline
+    plan:
+    - get: pipeline-resources
+    - get: node-repo
+      trigger: true
+    - put: node-repo
+      params:
+        path: node-repo
+        status: pending
+    # in_parallel :
+    - task: run-build
+      file: pipeline-resources/02/demos/mod2/before/build-task.yml
+      # vars:
+      #   text : node-repo
+        
+    # - task: task2-copy-without-file
+    #   file: pipeline-resources/02/demos/mod2/before/lint-task.yml
