@@ -21,5 +21,4 @@ run:
         npm config set email anshitasingh101@gmail.com
         npm config set strict-ssl false
         npm install -g @angular/cli@latest
-        ng build
-    
+        echo "Ang Version: $(ng --version)"
