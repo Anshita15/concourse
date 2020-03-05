@@ -5,7 +5,7 @@ image_resource:
     source: {repository: node, tag: "8" }
 
 run: 
-  path: ((text))
+  path: /bin/sh
   args:
     - -c
     - |
