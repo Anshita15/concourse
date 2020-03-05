@@ -20,7 +20,6 @@ run:
         npm config set password Anshita@15
         npm config set email anshitasingh101@gmail.com
         npm config set strict-ssl false
-        npm whoami
-        npm config get password
+        npm install -g @angular/cli@latest
         ng build
     

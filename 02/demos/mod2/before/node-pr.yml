@@ -43,3 +43,15 @@ jobs:
         
     # - task: task2-copy-without-file
     #   file: pipeline-resources/02/demos/mod2/before/lint-task.yml
+    on_success:
+      do:
+      - put: node-repo
+        params:
+          path: node-repo
+          status: success
+    on_failure:
+      do:
+      - put: node-repo
+        params:
+          path: node-repo
+          status: failed
