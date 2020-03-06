@@ -13,4 +13,5 @@ run:
     - -c
     - |
        ls folder1
+       cd folder1
        cat file1
