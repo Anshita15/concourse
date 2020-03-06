@@ -12,7 +12,6 @@ run:
   args:
     - -c
     - |
-        mkdir folder1
         touch file1
         echo content print > ./file1
-        mv file1 folder1
+        mv ./file1 folder1
