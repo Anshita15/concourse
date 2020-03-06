@@ -1,0 +1,16 @@
+---
+platform: linux
+image_resource: 
+  type: docker-image
+  source: {repository: ubuntu}
+
+inputs:
+- name : folder1
+
+run: 
+  path: /bin/sh
+  args:
+    - -c
+    - |
+       ls folder1
+       cat file1

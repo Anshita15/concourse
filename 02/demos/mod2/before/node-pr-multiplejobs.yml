@@ -26,7 +26,8 @@ resources:
     branch: master
 
 jobs:
-  - name: pr-pipeline
+  - name: first-job
+    serial_groups: [serial]
     plan:
     - get: pipeline-resources
     - get: node-repo
@@ -34,13 +35,13 @@ jobs:
     - put: node-repo
       params:
         path: node-repo
-        status: pending
-    # in_parallel :
+        status: pending 
+    # - in_parallel :
     - task: task1-copy-with-file
-      file: pipeline-resources/02/demos/mod2/before/mod2-task-copy.yml
-        
-    - task: task2-copy-without-file
       file: pipeline-resources/02/demos/mod2/before/mod2-task-without-copy.yml
+            
+      # - task: task2-copy-without-file
+      #   file: pipeline-resources/02/demos/mod2/before/mod2-task-without-copy.yml
     on_success:
       do:
       - put: node-repo
@@ -52,4 +53,33 @@ jobs:
       - put: node-repo
         params:
           path: node-repo
-          status: failed
+          status: failure
+
+  - name: second-job
+    serial_groups: [serial]
+    plan:
+    - get: pipeline-resources
+    - get: node-repo
+      trigger: true
+    - put: node-repo
+      params:
+        path: node-repo
+        status: pending
+    # - in_parallel :
+      # - task: task1-copy-with-file
+      #   file: pipeline-resources/02/demos/mod2/before/mod2-task-copy.yml
+            
+    - task: task2-copy-without-file
+      file: pipeline-resources/02/demos/mod2/before/mod2-task-copy.yml
+    on_success:
+      do:
+      - put: node-repo
+        params:
+          path: node-repo
+          status: success
+    on_failure:
+      do:
+      - put: node-repo
+        params:
+          path: node-repo
+          status: failure
