@@ -14,4 +14,9 @@ run:
     - |
        ls folder1
        cd folder1
+       touch file2
+       echo "next content" > ./file2
+       echo "print here folder updated"
+       ls .
        cat file1
+       cat file2
